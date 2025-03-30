@@ -1,0 +1,6 @@
+[package]
+name = "d1_not_quite_lisp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
