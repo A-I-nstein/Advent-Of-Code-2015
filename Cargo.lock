@@ -5,3 +5,7 @@ version = 4
 [[package]]
 name = "d1_not_quite_lisp"
 version = "0.1.0"
+
+[[package]]
+name = "d2_i_was_told_there_would_be_no_math"
+version = "0.1.0"
