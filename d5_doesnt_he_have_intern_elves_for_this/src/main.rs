@@ -25,12 +25,7 @@ fn check_condn_vowel(string: &str) -> bool {
 
 fn check_condn_char_repeat(string: &str) -> bool {
     let chars: Vec<char> = string.chars().collect();
-    for window in chars.windows(2) {
-        if window[0] == window[1] {
-            return true;
-        }
-    }
-    false
+    chars.windows(2).any(|window| window[0] == window[1])
 }
 
 fn check_condn_invalid_str(string: &str) -> bool {
@@ -45,7 +40,6 @@ fn check_condn_invalid_str(string: &str) -> bool {
 
 fn check_condn_2char_repeat(string: &str) -> bool {
     let chars: Vec<char> = string.chars().collect();
-
     chars.windows(2).enumerate().any(|(i, window1)| {
         chars
             .windows(2)
@@ -56,12 +50,7 @@ fn check_condn_2char_repeat(string: &str) -> bool {
 
 fn check_condn_xyx(string: &str) -> bool {
     let chars: Vec<char> = string.chars().collect();
-    for window in chars.windows(3) {
-        if window[0] == window[2] {
-            return true;
-        }
-    }
-    false
+    chars.windows(3).any(|window| window[0] == window[2])
 }
 
 fn main() -> Result<(), String> {
