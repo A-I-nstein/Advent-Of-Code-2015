@@ -32,6 +32,7 @@ fn check_condn_char_repeat(string: &str) -> bool {
     }
     false
 }
+
 fn check_condn_invalid_str(string: &str) -> bool {
     let regex_invalid_str = Regex::new(r"ab|cd|pq|xy").unwrap();
     let count = regex_invalid_str.find_iter(string).count();
@@ -42,22 +43,54 @@ fn check_condn_invalid_str(string: &str) -> bool {
     }
 }
 
+fn check_condn_2char_repeat(string: &str) -> bool {
+    let chars: Vec<char> = string.chars().collect();
+
+    chars.windows(2).enumerate().any(|(i, window1)| {
+        chars
+            .windows(2)
+            .skip(i + 2)
+            .any(|window2| window1 == window2)
+    })
+}
+
+fn check_condn_xyx(string: &str) -> bool {
+    let chars: Vec<char> = string.chars().collect();
+    for window in chars.windows(3) {
+        if window[0] == window[2] {
+            return true;
+        }
+    }
+    false
+}
+
 fn main() -> Result<(), String> {
     let puzzle_input: String =
         read_input("input.txt").map_err(|e| format!("Could not read input file: {}", e))?;
     let puzzle_input_strings = parse_input(&puzzle_input);
-    let mut nice_string_count: u32 = 0;
+    let mut nice_string_count_puzzle_1: u32 = 0;
+    let mut nice_string_count_puzzle_2: u32 = 0;
 
     for string in puzzle_input_strings {
-        let condn_vowel = check_condn_vowel(string);
-        let condn_char_repeat = check_condn_char_repeat(string);
-        let condn_invalid_str = check_condn_invalid_str(string);
+        if check_condn_vowel(string)
+            && check_condn_char_repeat(string)
+            && !check_condn_invalid_str(string)
+        {
+            nice_string_count_puzzle_1 += 1;
+        }
 
-        if condn_vowel && condn_char_repeat && !condn_invalid_str {
-            nice_string_count += 1;
+        if check_condn_2char_repeat(string) && check_condn_xyx(string) {
+            nice_string_count_puzzle_2 += 1;
         }
     }
 
-    println!("\nPuzzle 1: {} strings are nice.", nice_string_count);
+    println!(
+        "\nPuzzle 1: {} strings are nice.",
+        nice_string_count_puzzle_1
+    );
+    println!(
+        "\nPuzzle 2: {} strings are nice.",
+        nice_string_count_puzzle_2
+    );
     Ok(())
 }
