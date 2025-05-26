@@ -46,6 +46,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "d7_some_assembly_required"
+version = "0.1.0"
+dependencies = [
+ "regex",
+]
+
+[[package]]
 name = "hex"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
