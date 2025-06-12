@@ -53,6 +53,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "d8_matchsticks"
+version = "0.1.0"
+
+[[package]]
 name = "hex"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
