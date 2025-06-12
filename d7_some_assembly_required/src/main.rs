@@ -1,4 +1,4 @@
-use std::{fs, io, str::FromStr};
+use std::{collections::HashMap, fs, io, str::FromStr};
 
 use regex::Regex;
 
@@ -157,12 +157,23 @@ fn parse_input(puzzle_input: &str) -> Vec<Instruction> {
     puzzle_input_instructions
 }
 
+fn process_instructions(puzzle_input_instructions: &mut Vec<Instruction>) -> HashMap<String, u128> {
+    let mut wire_signals: HashMap<String, u128> = HashMap::new();
+    
+    // TODO: Process Instructions
+
+    return wire_signals;
+}
+
 fn main() -> Result<(), String> {
     let puzzle_input =
-        read_input("input.txt").map_err(|e| format!("Could not read input file: {}", e))?;
+        read_input("test.txt").map_err(|e| format!("Could not read input file: {}", e))?;
 
-    let puzzle_input_instructions: Vec<Instruction> = parse_input(&puzzle_input[0..]);
+    let mut puzzle_input_instructions: Vec<Instruction> = parse_input(&puzzle_input[0..]);
     println!("{:?}", puzzle_input_instructions);
+
+    let wire_signals = process_instructions(&mut puzzle_input_instructions);
+    println!("{:?}", wire_signals);
 
     Ok(())
 }
